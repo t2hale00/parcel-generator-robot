@@ -1,6 +1,6 @@
-# ADVANCED WEB APPLICATION PROJECT
-# Web Development
-# parcel-generator-robot
+**#ADVANCED WEB APPLICATION PROJECT
+#Web Development
+#parcel-generator-robot**
 
 This repository contains all the files used to make a **"Parcel Generator "Robot"**.
 
@@ -11,10 +11,10 @@ The system should have the following parts:
   3. Parcel locker touchscreen simulator --> System simulator
   4. Parcel generator robot --> An application that generates new parcels for consumer users. 
 
-# JavaScript
-# React
-# Node.js
-# Express
-# API
-# MySQL
+**#JavaScript
+#React
+#Node.js
+#Express
+#API
+#MySQL**
 
