@@ -1,6 +1,6 @@
-**#ADVANCED WEB APPLICATION PROJECT
-#Web Development
-#parcel-generator-robot**
+**#ADVANCED WEB APPLICATION PROJECT**
+**#Web Development**
+**#parcel-generator-robot**
 
 This repository contains all the files used to make a **"Parcel Generator "Robot"**.
 
