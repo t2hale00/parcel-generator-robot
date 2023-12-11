@@ -13,10 +13,15 @@ const dbConfig = {
 };
 
 // Function to generate parcels for existing users
-async function generateParcels(connection) {
+async function generateParcels() {
+  let connection;
+
   try {
+    // Create a new connection for each execution
+    connection = await mysql.createConnection(dbConfig);
+
     // Generate random parcels for 0-2 users
-    const numParcels = faker.datatype.number({ min: 0, max: 2 });
+    const numParcels = faker.datatype.number({ min: 1, max: 2 });
 
     for (let i = 0; i < numParcels; i++) {
       const senderName = faker.name.findName();
@@ -77,14 +82,9 @@ async function generateParcels(connection) {
     console.log('Succeed'); // Log succeed after generating parcels
   } catch (error) {
     console.error('Error generating parcels:', error);
-    // Rollback the transaction in case of an error
-    if (connection && connection.state !== 'disconnected') {
-      await connection.rollback();
-    }
   } finally {
-    // Commit the transaction and close the connection after use
-    if (connection && connection.state !== 'disconnected') {
-      await connection.commit();
+    // Close the connection after use
+    if (connection) {
       connection.end();
     }
   }
@@ -95,16 +95,16 @@ mysql.createConnection(dbConfig)
   .then(async (connection) => {
     console.log('Database connected');
 
-    // Call generateParcels after a delay and then at intervals (every 30 seconds)
-    setTimeout(async () => {
-      await generateParcels(connection);
-
-      // Call generateParcels at intervals (every 30 seconds)
-      setInterval(async () => {
-        const newConnection = await mysql.createConnection(dbConfig);
-        await generateParcels(newConnection);
-      }, 30 * 1000); // Execute every 30 seconds
-    }, 30 * 1000); // Initial delay of 30 seconds
+    // API endpoint to trigger parcel generation
+    app.get('/generate-parcels', async (req, res) => {
+      try {
+        await generateParcels(connection);
+        res.status(200).json({ message: 'Parcels generated successfully' });
+      } catch (error) {
+        console.error('Error generating parcels:', error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
+    });
 
     // Start the server
     app.listen(PORT, () => {
