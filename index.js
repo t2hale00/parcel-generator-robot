@@ -21,7 +21,7 @@ async function generateParcels() {
     connection = await mysql.createConnection(dbConfig);
 
     // Generate random parcels for 0-2 users
-    const numParcels = faker.datatype.number({ min: 1, max: 2 });
+    const numParcels = faker.datatype.number({ min: 0, max: 2 });
 
     for (let i = 0; i < numParcels; i++) {
       const senderName = faker.name.findName();
@@ -95,16 +95,30 @@ mysql.createConnection(dbConfig)
   .then(async (connection) => {
     console.log('Database connected');
 
-    // API endpoint to trigger parcel generation
-    app.get('/generate-parcels', async (req, res) => {
-      try {
-        await generateParcels(connection);
-        res.status(200).json({ message: 'Parcels generated successfully' });
-      } catch (error) {
-        console.error('Error generating parcels:', error);
-        res.status(500).json({ error: 'Internal server error' });
-      }
-    });
+
+ // Call generateParcels after a delay and then at intervals (every 30 seconds)
+ setTimeout(async () => {
+  await generateParcels(connection);
+
+  // Call generateParcels at intervals (every 30 seconds)
+  setInterval(async () => {
+    const newConnection = await mysql.createConnection(dbConfig);
+    await generateParcels(newConnection);
+  }, 5 * 1000); // Execute every 30 seconds
+}, 5 * 1000); // Initial delay of 30 seconds
+
+
+
+    // // API endpoint to trigger parcel generation
+    // app.get('/generate-parcels', async (req, res) => {
+    //   try {
+    //     await generateParcels(connection);
+    //     res.status(200).json({ message: 'Parcels generated successfully' });
+    //   } catch (error) {
+    //     console.error('Error generating parcels:', error);
+    //     res.status(500).json({ error: 'Internal server error' });
+    //   }
+    // });
 
     // Start the server
     app.listen(PORT, () => {
