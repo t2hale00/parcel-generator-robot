@@ -9,7 +9,7 @@ const dbConfig = {
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'consumerdbtest'
+  database: 'consumerdb'
 };
 
 // Function to generate parcels for existing users
@@ -57,8 +57,8 @@ async function generateParcels() {
       const [result] = await connection.execute(
         'INSERT INTO parcel ( sendername, senderaddress, senderPhoneNumber, ' +
         'recipientname, recipientaddress, recipientPhoneNumber, ' +
-        'width, height, length, weight, location, reservationCode, status) ' +
-        'VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        'width, height, length, weight, location, IsCodeValid,reservationCode, status) ' +
+        'VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)',
         [
           senderName,
           senderAddress,
@@ -71,6 +71,7 @@ async function generateParcels() {
           parcelSize.length,
           parcelSize.weight,
           location[0].locationname,
+          false,
           reservationCode,
           'Parcel In Locker'
         ]
