@@ -53,12 +53,12 @@ Our user interface is crafted to be user-friendly and visually appealing. Users 
 To get started with Parcel App, follow these simple steps:
 
 1. **Clone the repositories:**
-   - [Consumer Application](https://github.com/t2hale00/user-app): `git clone https://github.com/t2hale00/user-app.git`
+   - [Consumer User Application](https://github.com/t2hale00/user-app): `git clone https://github.com/t2hale00/user-app.git`
    - [Delivery Driver Application](https://github.com/t2hale00/delivery-driver-app): `git clone https://github.com/t2hale00/delivery-driver-app.git`
    - [Locker Simulator](https://github.com/t2hale00/locker-simulator): `git clone https://github.com/t2hale00/locker-simulator.git`
    - [Parcel Generator “Robot”](https://github.com/t2hale00/parcel-generator-robot): `git clone https://github.com/t2hale00/parcel-generator-robot.git`
 
-2. **Install dependencies in every repository:** `npm install`
+2. **Install dependencies in every repository:** `npm install`  !! RUN THE CONSUMER USER APPLICATION FIRST BEFORE THE OTHER APPS!!
 
 3. **Configure the backend settings:** Directly set/change the database credentials based on your local database.
 
