@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3400;
 const faker = require('faker');
 const mysql = require('mysql2/promise');
 
@@ -105,8 +105,8 @@ mysql.createConnection(dbConfig)
   setInterval(async () => {
     const newConnection = await mysql.createConnection(dbConfig);
     await generateParcels(newConnection);
-  }, 5 * 1000); // Execute every 30 seconds
-}, 5 * 1000); // Initial delay of 30 seconds
+  }, 60 * 1000); 
+}, 60 * 1000); 
 
 
 
