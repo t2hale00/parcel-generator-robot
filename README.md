@@ -58,11 +58,11 @@ To get started with Parcel App, follow these simple steps:
    - [Locker Simulator](https://github.com/t2hale00/locker-simulator): `git clone https://github.com/t2hale00/locker-simulator.git`
    - [Parcel Generator “Robot”](https://github.com/t2hale00/parcel-generator-robot): `git clone https://github.com/t2hale00/parcel-generator-robot.git`
 
-2. **Install dependencies in every repository:** `npm install`  !! RUN THE CONSUMER USER APPLICATION FIRST BEFORE THE OTHER APPS!!
+2. **Install dependencies in every repository:** `npm install` 
 
 3. **Configure the backend settings:** Directly set/change the database credentials based on your local database.
 
-4. **Run the applications:** `npm start`
+4. **Run the applications:** `npm start`   !! RUN THE CONSUMER USER APPLICATION FIRST BEFORE THE OTHER APPS!!
 
 5. **Access Parcel App through your preferred web browser.**
 
