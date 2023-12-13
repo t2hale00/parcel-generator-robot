@@ -105,8 +105,8 @@ mysql.createConnection(dbConfig)
   setInterval(async () => {
     const newConnection = await mysql.createConnection(dbConfig);
     await generateParcels(newConnection);
-  }, 60 * 1000); 
-}, 60 * 1000); 
+  }, 30 * 1000); 
+}, 30 * 1000); 
 
 
 
